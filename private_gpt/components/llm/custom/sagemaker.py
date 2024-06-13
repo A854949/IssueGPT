@@ -149,7 +149,7 @@ class SagemakerLLM(CustomLLM):
         endpoint_name: str | None = "",
         temperature: float = 0.1,
         max_new_tokens: int = 512,  # to review defaults
-        context_window: int = 2048,  # to review defaults
+        context_window: int = 4096,  # to review defaults
         messages_to_prompt: Any = None,
         completion_to_prompt: Any = None,
         callback_manager: CallbackManager | None = None,

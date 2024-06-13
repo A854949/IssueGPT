@@ -28,11 +28,11 @@ THIS_DIRECTORY_RELATIVE = Path(__file__).parent.relative_to(PROJECT_ROOT_PATH)
 # Should be "private_gpt/ui/avatar-bot.ico"
 AVATAR_BOT = THIS_DIRECTORY_RELATIVE / "avatar-bot.ico"
 
-UI_TAB_TITLE = "My Private GPT"
+UI_TAB_TITLE = "Issue GPT"
 
 SOURCES_SEPARATOR = "\n\n Sources: \n"
 
-MODES = ["Query Files", "Search Files", "LLM Chat (no context from files)"]
+MODES = ["Query Files"]
 
 
 class Source(BaseModel):
@@ -80,8 +80,20 @@ class PrivateGptUi:
         # Initialize system prompt based on default mode
         self.mode = MODES[0]
         self._system_prompt = self._get_default_system_prompt(self.mode)
+    
+    def _handle_feedback(self, feedback: str) -> None:
+        logger.info(f"Feedback received: {feedback}")
+        if feedback == "👍":
+            print("User liked the response.")
+            return "Thank you for your positive feedback!"
+        elif feedback == "👎":
+            print("User disliked the response.")
+            return "Sorry to hear that. We'll try to improve."
+        else:
+            print("Received unexpected feedback.")
+            return "Received unexpected feedback."
 
-    def _chat(self, message: str, history: list[list[str]], mode: str, *_: Any) -> Any:
+    def _chat(self, message: str, history: list[list[str]], mode: str, *_: Any) -> Any: 
         def yield_deltas(completion_gen: CompletionGen) -> Iterable[str]:
             full_response: str = ""
             stream = completion_gen.response
@@ -294,14 +306,14 @@ class PrivateGptUi:
             theme=gr.themes.Soft(primary_hue=slate),
             css=".logo { "
             "display:flex;"
-            "background-color: #C7BAFF;"
+            "background-color: #b5e4f5;"
             "height: 80px;"
             "border-radius: 8px;"
             "align-content: center;"
             "justify-content: center;"
             "align-items: center;"
             "}"
-            ".logo img { height: 25% }"
+            ".logo img { height: 50% }"
             ".contain { display: flex !important; flex-direction: column !important; }"
             "#component-0, #component-3, #component-10, #component-8  { height: 100% !important; }"
             "#chatbot { flex-grow: 1 !important; overflow: auto !important;}"
@@ -335,6 +347,7 @@ class PrivateGptUi:
                         self._upload_file,
                         inputs=upload_button,
                         outputs=ingested_dataset,
+                        
                     )
                     ingested_dataset.change(
                         self._list_ingested_files,
@@ -357,6 +370,7 @@ class PrivateGptUi:
                         "⚠️ Delete ALL files",
                         size="sm",
                         visible=settings().ui.delete_all_files_button_enabled,
+                        interactive=False,
                     )
                     deselect_file_button.click(
                         self._deselect_selected_file,
@@ -408,10 +422,11 @@ class PrivateGptUi:
                         self._set_system_prompt,
                         inputs=system_prompt_input,
                     )
-
                 with gr.Column(scale=7, elem_id="col"):
+                    def echo_function(message, history, *args):
+                        yield from self._chat(message, history, self.mode)
                     _ = gr.ChatInterface(
-                        self._chat,
+                        fn=echo_function,
                         chatbot=gr.Chatbot(
                             label=f"LLM: {settings().llm.mode}",
                             show_copy_button=True,
@@ -421,9 +436,17 @@ class PrivateGptUi:
                                 None,
                                 AVATAR_BOT,
                             ),
+                            value=[[None, "Hello, I'm an expert in testing. I specialize in identifying the root causes of issues. How can I help you today?"]]
                         ),
-                        additional_inputs=[mode, upload_button, system_prompt_input],
+                        additional_inputs=[mode, upload_button],
                     )
+                    with gr.Row():
+                        like_button = gr.Button(value="👍")
+                        dislike_button = gr.Button(value="👎")
+                    feedback_label = gr.Label()
+                like_button.click(self._handle_feedback, inputs=[like_button], outputs=[feedback_label])
+                dislike_button.click(self._handle_feedback, inputs=[dislike_button], outputs=[feedback_label])
+                
         return blocks
 
     def get_ui_blocks(self) -> gr.Blocks:
