@@ -5,7 +5,6 @@ from private_gpt.components.vector_store.vector_store_component import (
 )
 from tests.fixtures.mock_injector import MockInjector
 
-
 @pytest.fixture(autouse=True)
 def _auto_close_vector_store_client(injector: MockInjector) -> None:
     """Auto close VectorStore client after each test.

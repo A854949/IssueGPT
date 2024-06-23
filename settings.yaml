@@ -36,7 +36,6 @@ ui:
     A: Check if there is a BIOS update available for the motherboard. An outdated BIOS may have compatibility issues with certain hardware devices.
     Q: The anomaly event is "Memory speed show as '4400MHz' in BIOS setup with 4800MHz memory installed(1DPC) ".  What's the cause of this issue?
     A: 
-
     
   delete_file_button_enabled: true
   delete_all_files_button_enabled: true
