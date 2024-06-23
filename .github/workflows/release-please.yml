@@ -17,3 +17,4 @@ jobs:
         with:
           release-type: simple
           version-file: version.txt
+          
