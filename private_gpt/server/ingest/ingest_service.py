@@ -2,7 +2,6 @@ import logging
 import tempfile
 from pathlib import Path
 from typing import AnyStr, BinaryIO
-
 from injector import inject, singleton
 from llama_index import (
     ServiceContext,

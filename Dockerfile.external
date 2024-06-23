@@ -38,3 +38,4 @@ ENV PYTHONPATH="$PYTHONPATH:/private_gpt/"
 
 USER worker
 ENTRYPOINT python -m private_gpt
+

@@ -21,3 +21,4 @@ os.environ["GRADIO_ANALYTICS_ENABLED"] = "False"
 # Disable chromaDB telemetry
 # It is already disabled, see PR#1144
 # os.environ["ANONYMIZED_TELEMETRY"] = "False"
+

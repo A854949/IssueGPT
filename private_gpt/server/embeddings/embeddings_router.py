@@ -2,7 +2,6 @@ from typing import Literal
 
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel
-
 from private_gpt.server.embeddings.embeddings_service import (
     Embedding,
     EmbeddingsService,

@@ -9,3 +9,4 @@ from private_gpt.launcher import create_app
 llama_index.set_global_handler("simple")
 
 app = create_app(global_injector)
+

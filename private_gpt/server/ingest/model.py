@@ -3,7 +3,6 @@ from typing import Any, Literal
 from llama_index import Document
 from pydantic import BaseModel, Field
 
-
 class IngestedDoc(BaseModel):
     object: Literal["ingest.document"]
     doc_id: str = Field(examples=["c202d5e6-7b69-4869-81cc-dd574ee8ee11"])

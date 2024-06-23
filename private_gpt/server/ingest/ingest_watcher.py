@@ -1,7 +1,6 @@
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
-
 from watchdog.events import (
     DirCreatedEvent,
     DirModifiedEvent,

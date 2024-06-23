@@ -1,5 +1,4 @@
 """Authentication mechanism for the API.
-
 Define a simple mechanism to authenticate requests.
 More complex authentication mechanisms can be defined here, and be placed in the
 `authenticated` method (being a 'bean' injected in fastapi routers).

@@ -12,7 +12,6 @@ from private_gpt.server.utils.auth import authenticated
 
 completions_router = APIRouter(prefix="/v1", dependencies=[Depends(authenticated)])
 
-
 class CompletionsBody(BaseModel):
     prompt: str
     system_prompt: str | None = None

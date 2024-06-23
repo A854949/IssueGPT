@@ -20,7 +20,6 @@ from private_gpt.components.vector_store.vector_store_component import (
 from private_gpt.open_ai.extensions.context_filter import ContextFilter
 from private_gpt.server.chunks.chunks_service import Chunk
 
-
 class Completion(BaseModel):
     response: str
     sources: list[Chunk] | None = None

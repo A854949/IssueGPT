@@ -72,7 +72,6 @@ class OpenAICompletion(BaseModel):
                 )
             ],
         )
-
     @classmethod
     def json_from_delta(
         cls,

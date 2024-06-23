@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field
 
 from private_gpt.settings.settings_loader import load_active_settings
 
-
 class CorsSettings(BaseModel):
     """CORS configuration.
 

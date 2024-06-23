@@ -20,3 +20,4 @@ sagemaker:
 ui:
   enabled: true
   path: /
+  
