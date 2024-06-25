@@ -31,7 +31,7 @@ Issue is an advanced AI-driven tool designed to enhance the efficiency and accur
   conda activate IssueGPT
 ```
 
-* modify IssueGPT/settings.yaml - local to specific your model name
+* Modify IssueGPT/settings.yaml - local to specific your model name
 ```
 poetry install --with ui
 poetry install --with local
@@ -44,7 +44,7 @@ poetry install --with local
 CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
 ```
 
-* create folder and put your data inside, and run
+* Create folder and put your data inside, and run
 ```
 make ingest $above_folder_path
 ```
