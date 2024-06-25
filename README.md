@@ -45,9 +45,13 @@ CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cac
 ```
 
 * Put your doucuments into ```document``` folder, and run
-```make ingest document```
+```
+make ingest document
+```
 
 * Once installed, you can run IssueGPT with the following command:
-```PGPT_PROFILES=local make run```
+```
+PGPT_PROFILES=local make run
+```
 
 * If your installation was correct, you should see a message similar to the following next time you start the server ```BLAS = 1```.
