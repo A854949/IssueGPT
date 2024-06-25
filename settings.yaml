@@ -46,7 +46,12 @@ llm:
   # Should be matching the selected model
   max_new_tokens: 512
   context_window: 4096
+  token: "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"
   tokenizer: mistralai/Mistral-7B-Instruct-v0.2
+  model_name: "mistralai/Mistral-7B-Instruct-v0.2"
+  tokenizer: AutoTokenizer.from_pretrained(model_name, use_auth_token=token)
+  model: AutoModelForCausalLM.from_pretrained(model_name, use_auth_token=token)
+
 
 embedding:
   # Should be matching the value above in most cases
