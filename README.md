@@ -44,9 +44,9 @@ poetry install --with local
 CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
 ```
 
-* Put your doucuments into ```document``` folder, and run
+* create folder and put your data inside, and run
 ```
-make ingest document
+make ingest $above_folder_path
 ```
 
 * Once installed, you can run IssueGPT with the following command:
