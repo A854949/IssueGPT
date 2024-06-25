@@ -55,3 +55,4 @@ PGPT_PROFILES=local make run
 ```
 
 * If your installation was correct, you should see a message similar to the following next time you start the server ```BLAS = 1```.
+* The UI will be available at http://localhost:8001
